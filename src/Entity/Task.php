@@ -12,7 +12,7 @@ class Task
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private int $id;
+    private ?int $id = null;
 
     #[ORM\Column(length: 255)]
     private ?string $title = null;
@@ -32,6 +32,12 @@ class Task
     }
 
     // Getters
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
     public function getTitle(): ?string
     {
         return $this->title;
@@ -41,11 +47,13 @@ class Task
         return $this->description;
     }
 
-    public function isCompleted(): ?bool {
+    public function isCompleted(): ?bool
+    {
         return $this->completed;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable {
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
         return $this->createdAt;
     }
 
@@ -61,7 +69,8 @@ class Task
         $this->description = $description;
         return $this;
     }
-    public function setCompleted(bool $completed): static {
+    public function setCompleted(bool $completed): static
+    {
         $this->completed = $completed;
         return $this;
     }
